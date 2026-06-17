@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EcoSort AI</string>
+    <string name="ecosort_ai">🌱 EcoSort AI</string>
+    <string name="your_sustainable_waste_assistant">Your Sustainable Waste Assistant</string>
+    <string name="how_should_i_dispose_of_a_used_battery">How should I dispose of a used battery?</string>
+    <string name="ask_ai">Ask AI</string>
+    <string name="today_s_eco_tip">Today\'s Eco Tip</string>
+    <string name="reduce_reuse_recycle">Reduce, Reuse, Recycle.</string>
+    <string name="view_history">View History</string>
+</resources>
