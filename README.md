@@ -48,19 +48,19 @@ EcoSort AI is a Retrieval-Augmented Generation (RAG) based sustainability assist
 ## 🏗️ System Architecture
 
 Android App
-↓
+->
 Retrofit API
-↓
+->
 Spring Boot Backend
-↓
+->
 Query Service
-↓
+->
 Smart Retrieval Engine
-↓
+->
 PDF Knowledge Base
-↓
+->
 Mistral 7B LLM
-↓
+->
 AI Generated Response
 
 ---
