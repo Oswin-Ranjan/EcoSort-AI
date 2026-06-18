@@ -1,11 +1,11 @@
 package com.ecosort.backend.service;
 
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 @Service
 public class FileReaderService {
@@ -21,19 +21,30 @@ public class FileReaderService {
                                     "knowledgebase/" + fileName);
 
             if (inputStream == null) {
+
                 return "Knowledge file not found.";
             }
 
-            BufferedReader reader =
-                    new BufferedReader(
-                            new InputStreamReader(inputStream));
+            PDDocument document =
+                    Loader.loadPDF(
+                            inputStream.readAllBytes()
+                    );
 
-            return reader.lines()
-                    .collect(Collectors.joining("\n"));
+            PDFTextStripper stripper =
+                    new PDFTextStripper();
+
+            String text =
+                    stripper.getText(document);
+
+            document.close();
+
+            return text;
 
         } catch (Exception e) {
 
-            return "Error reading knowledge base.";
+            e.printStackTrace();
+
+            return "Error reading PDF knowledge base.";
         }
     }
 }

@@ -18,7 +18,7 @@ public class RagService {
                 new HashMap<>();
 
         scores.put(
-                "Battery_Disposal_Guide.txt",
+                "Battery_Disposal_Guide.pdf",
                 calculateScore(
                         question,
                         new String[]{
@@ -35,7 +35,7 @@ public class RagService {
         );
 
         scores.put(
-                "Plastic_Recycling_Guide.txt",
+                "Plastic_Recycling_Guide.pdf",
                 calculateScore(
                         question,
                         new String[]{
@@ -51,7 +51,7 @@ public class RagService {
         );
 
         scores.put(
-                "E_Waste_Management.txt",
+                "E-Waste_Management_Guide.pdf",
                 calculateScore(
                         question,
                         new String[]{
@@ -70,7 +70,7 @@ public class RagService {
         );
 
         scores.put(
-                "Composting_Guide.txt",
+                "Composting_Guide.pdf",
                 calculateScore(
                         question,
                         new String[]{
@@ -87,7 +87,7 @@ public class RagService {
         );
 
         String bestDocument =
-                "Waste_Segregation_Guide.txt";
+                "Waste_Segregation_Guide.pdf";
 
         int highestScore = 0;
 
