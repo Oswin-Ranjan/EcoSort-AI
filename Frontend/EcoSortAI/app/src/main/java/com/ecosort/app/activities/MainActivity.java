@@ -155,8 +155,13 @@ public class MainActivity extends AppCompatActivity {
                                 String answer =
                                         response.body().getAnswer();
 
+                                int confidence =
+                                        response.body().getConfidence();
+
                                 tvSource.setText(
-                                        "📄 " + source
+                                        "📄 " + source +
+                                                "\n🎯 Confidence: " +
+                                                confidence + "%"
                                 );
 
                                 tvAnswer.setText(answer);
@@ -166,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
                                                 + question
                                                 + "\n\nSource:\n"
                                                 + source
+                                                + "\nConfidence:\n"
+                                                + confidence + "%"
                                                 + "\n\nAnswer:\n"
                                                 + answer;
 

@@ -4,6 +4,7 @@ public class QueryResponse {
 
     private String answer;
     private String source;
+    private int confidence;
 
     public String getAnswer() {
         return answer;
@@ -11,5 +12,9 @@ public class QueryResponse {
 
     public String getSource() {
         return source;
+    }
+
+    public int getConfidence() {
+        return confidence;
     }
 }
