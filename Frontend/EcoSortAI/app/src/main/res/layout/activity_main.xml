@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:text="🌱 EcoSort AI"
                     android:textColor="@color/primary_green"
-                    android:textSize="32sp"
+                    android:textSize="36sp"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -108,25 +108,33 @@
                     android:id="@+id/btnBattery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🔋 Battery"/>
+                    android:text="🔋 Battery"
+                    android:layout_marginEnd="8dp"
+                    app:cornerRadius="18dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPlastic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="♻️ Plastic"/>
+                    android:text="♻️ Plastic"
+                    android:layout_marginEnd="8dp"
+                    app:cornerRadius="18dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEWaste"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="💻 E-Waste"/>
+                    android:text="💻 E-Waste"
+                    android:layout_marginEnd="8dp"
+                    app:cornerRadius="18dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCompost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🍃 Compost"/>
+                    android:text="🍃 Compost"
+                    android:layout_marginEnd="8dp"
+                    app:cornerRadius="18dp"/>
 
             </LinearLayout>
 
@@ -143,7 +151,8 @@
                 android:id="@+id/etQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="🔍 What item do you want to dispose of?" />
+                app:startIconDrawable="@android:drawable/ic_menu_search"
+                android:hint="Ask about batteries, plastic, e-waste or compost"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,7 +161,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Analyze Waste"/>
+            android:text="🧠 Generate Recommendation"
+            app:cornerRadius="16dp"
+            android:textAllCaps="false"/>
 
         <!-- Recommendation Card -->
 
@@ -187,6 +198,14 @@
                     android:textStyle="bold"/>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/confidenceBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:indicatorDirectionLinear="startToEnd"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/progressBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -198,9 +217,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="14dp"
-                    android:text="🌱 Select a quick action or ask a question to receive personalized disposal guidance."
+                    android:text="🌱🧠 EcoSort AI is ready.\n\nAsk a sustainability question or scan an item to receive personalized disposal guidance."
                     android:textColor="@color/text_primary"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="6dp"
+                    android:paddingTop="6dp"/>
 
             </LinearLayout>
 
@@ -213,7 +234,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="📚 Query History"/>
+            android:text="📚 Query History"
+            app:cornerRadius="16dp"
+            android:textAllCaps="false"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabCamera"
@@ -222,7 +245,9 @@
             android:layout_gravity="end"
             android:layout_margin="20dp"
             android:contentDescription="Scan Waste"
-            android:src="@android:drawable/ic_menu_camera"/>
+            android:src="@android:drawable/ic_menu_camera"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/primary_green"/>
 
     </LinearLayout>
 

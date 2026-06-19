@@ -18,6 +18,11 @@ import androidx.core.content.ContextCompat;
 import com.ecosort.app.R;
 import com.google.android.material.button.MaterialButton;
 
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.label.ImageLabel;
+import com.google.mlkit.vision.label.ImageLabeling;
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions;
+
 public class ScanActivity extends AppCompatActivity {
 
     private ImageView imagePreview;
@@ -83,8 +88,8 @@ public class ScanActivity extends AppCompatActivity {
                                         imageBitmap
                                 );
 
-                                tvResult.setText(
-                                        "✅ Image Captured Successfully"
+                                detectWaste(
+                                        imageBitmap
                                 );
                             }
                         });
@@ -174,24 +179,158 @@ public class ScanActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            String[] permissions,
-            int[] grantResults) {
-
-        super.onRequestPermissionsResult(
-                requestCode,
-                permissions,
-                grantResults);
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == CAMERA_PERMISSION_CODE) {
-
-            if (grantResults.length > 0
-                    && grantResults[0]
-                    == PackageManager.PERMISSION_GRANTED) {
-
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openCamera();
             }
         }
+    }
+
+    private void detectWaste(Bitmap bitmap) {
+
+        InputImage image =
+                InputImage.fromBitmap(
+                        bitmap,
+                        0
+                );
+
+        ImageLabeling.getClient(
+                        ImageLabelerOptions.DEFAULT_OPTIONS
+                )
+                .process(image)
+                .addOnSuccessListener(labels -> {
+
+                    if (labels.isEmpty()) {
+
+                        tvResult.setText(
+                                "Unable to identify waste."
+                        );
+
+                        tvRecommendation.setText(
+                                "Try capturing a clearer image."
+                        );
+
+                        return;
+                    }
+
+                    ImageLabel bestLabel =
+                            labels.get(0);
+
+                    String label =
+                            bestLabel.getText();
+
+                    tvResult.setText(
+                            "🤖 AI Detected: " + label
+                    );
+
+                    String lowerLabel =
+                            label.toLowerCase();
+
+                    if (lowerLabel.contains("battery")) {
+
+                        tvRecommendation.setText(
+                                "🔋 Battery detected.\n\nFetching AI recommendation..."
+                        );
+
+                        Intent intent =
+                                new Intent(
+                                        ScanActivity.this,
+                                        MainActivity.class
+                                );
+
+                        intent.putExtra(
+                                "question",
+                                "How should I dispose of a used battery?"
+                        );
+
+                        startActivity(intent);
+                    }
+
+                    else if (lowerLabel.contains("bottle")
+                            || lowerLabel.contains("plastic")) {
+
+                        tvRecommendation.setText(
+                                "♻️ Plastic waste detected.\n\nFetching AI recommendation..."
+                        );
+
+                        Intent intent =
+                                new Intent(
+                                        ScanActivity.this,
+                                        MainActivity.class
+                                );
+
+                        intent.putExtra(
+                                "question",
+                                "How do I recycle plastic bottles?"
+                        );
+
+                        startActivity(intent);
+                    }
+
+                    else if (lowerLabel.contains("computer")
+                            || lowerLabel.contains("laptop")
+                            || lowerLabel.contains("electronics")
+                            || lowerLabel.contains("electronic")) {
+
+                        tvRecommendation.setText(
+                                "💻 E-Waste detected.\n\nFetching AI recommendation..."
+                        );
+
+                        Intent intent =
+                                new Intent(
+                                        ScanActivity.this,
+                                        MainActivity.class
+                                );
+
+                        intent.putExtra(
+                                "question",
+                                "How should I dispose of an old laptop?"
+                        );
+
+                        startActivity(intent);
+                    }
+
+                    else if (lowerLabel.contains("food")
+                            || lowerLabel.contains("fruit")
+                            || lowerLabel.contains("vegetable")) {
+
+                        tvRecommendation.setText(
+                                "🍃 Organic waste detected.\n\nFetching AI recommendation..."
+                        );
+
+                        Intent intent =
+                                new Intent(
+                                        ScanActivity.this,
+                                        MainActivity.class
+                                );
+
+                        intent.putExtra(
+                                "question",
+                                "Can food waste be composted?"
+                        );
+
+                        startActivity(intent);
+                    }
+
+                    else {
+
+                        tvRecommendation.setText(
+                                "⚠️ Waste type not recognized.\n\nPlease use the category buttons below."
+                        );
+                    }
+                })
+                .addOnFailureListener(e -> {
+
+                    tvResult.setText(
+                            "Detection failed."
+                    );
+
+                    tvRecommendation.setText(
+                            e.getMessage()
+                    );
+                });
     }
 }

@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fabCamera;
 
+    private LinearProgressIndicator confidenceBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,22 @@ public class MainActivity extends AppCompatActivity {
         setupEcoTip();
         setupHistoryButton();
         setupAskButton();
+
+        String question =
+                getIntent().getStringExtra(
+                        "question"
+                );
+
+        if (question != null) {
+
+            etQuestion.setText(
+                    question
+            );
+
+            etQuestion.post(() ->
+                    btnAsk.performClick()
+            );
+        }
 
         fabCamera.setOnClickListener(v -> {
 
@@ -86,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         fabCamera = findViewById(R.id.fabCamera);
+
+        confidenceBar = findViewById(R.id.confidenceBar);
+        confidenceBar.setVisibility(View.GONE);
     }
 
     private void setupHistoryButton() {
@@ -158,6 +179,9 @@ public class MainActivity extends AppCompatActivity {
                                 int confidence =
                                         response.body().getConfidence();
 
+                                confidenceBar.setVisibility(View.VISIBLE);
+                                confidenceBar.setProgress(confidence);
+
                                 tvSource.setText(
                                         "📄 " + source +
                                                 "\n🎯 Confidence: " +
@@ -197,11 +221,15 @@ public class MainActivity extends AppCompatActivity {
                                 Throwable t) {
 
                             progressBar.setVisibility(View.GONE);
+                            confidenceBar.setVisibility(View.GONE);
 
-                            tvSource.setText("Connection Error");
+                            tvSource.setText(
+                                    "⚠️ AI Service Unavailable"
+                            );
 
                             tvAnswer.setText(
-                                    t.getMessage()
+                                    "The AI service is taking longer than expected.\n\n" +
+                                            "Please try again in a few moments."
                             );
                         }
                     });
@@ -252,9 +280,27 @@ public class MainActivity extends AppCompatActivity {
 
     private String formatSourceName(String source) {
 
-        return source
-                .replace(".txt", "")
-                .replace(".pdf", "")
-                .replace("_", " ");
+        switch (source) {
+
+            case "Battery_Disposal_Guide.pdf":
+                return "🔋 Battery Disposal Guide";
+
+            case "Plastic_Recycling_Guide.pdf":
+                return "♻️ Plastic Recycling Guide";
+
+            case "E_Waste_Management.pdf":
+                return "💻 E-Waste Management Guide";
+
+            case "Composting_Guide.pdf":
+                return "🍃 Composting Guide";
+
+            case "Waste_Segregation_Guide.pdf":
+                return "🗑️ Waste Segregation Guide";
+
+            default:
+                return source
+                        .replace(".pdf", "")
+                        .replace("_", " ");
+        }
     }
 }
