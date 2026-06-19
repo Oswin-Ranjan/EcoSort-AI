@@ -1,54 +1,152 @@
 # 🌱 EcoSort AI
 
-EcoSort AI is an AI-assisted sustainable waste management application designed to help users make environmentally responsible disposal decisions. The project combines an Android application with a Spring Boot backend to provide intelligent waste disposal recommendations based on a Retrieval-Augmented Generation (RAG) workflow.
+EcoSort AI is a Retrieval-Augmented Generation (RAG) based sustainability assistant that helps users make environmentally responsible waste disposal decisions. The application combines an Android frontend, a Spring Boot backend, a PDF-based knowledge repository, and the Mistral 7B Large Language Model to generate intelligent waste management recommendations.
 
-Users can ask questions about waste disposal, recycling, composting, and e-waste management through a modern Android interface. The system retrieves relevant information from a sustainability knowledge base and generates context-aware recommendations to promote eco-friendly practices.
+---
 
-## Features
+## 🚀 Features
 
-* 📱 Modern Android application built with Java and Material Design 3
-* 🤖 AI-assisted waste disposal recommendations
-* 📚 Retrieval-Augmented Generation (RAG) architecture
-* 🔍 Smart document retrieval using keyword-scoring and document ranking
-* ♻️ Support for battery disposal, plastic recycling, e-waste management, composting, and waste segregation
-* 📷 Waste scanning module with camera integration
-* 📝 Query history tracking and management
-* 🌍 Dynamic sustainability tips and eco-awareness content
-* 🔗 RESTful API communication using Retrofit and Spring Boot
+### ♻️ AI-Powered Waste Guidance
 
-## Tech Stack
+* Ask sustainability and waste disposal questions in natural language.
+* Receive AI-generated recommendations powered by Mistral 7B.
+
+### 📚 Retrieval-Augmented Generation (RAG)
+
+* Uses a curated sustainability knowledge base stored as PDF documents.
+* Retrieves the most relevant document using a confidence-based retrieval engine.
+* Generates context-aware answers using retrieved knowledge.
+
+### 🔍 Smart Document Retrieval
+
+* Keyword scoring and ranking system.
+* Confidence score generation for retrieved documents.
+* Automatic source identification.
+
+### 📷 Waste Scanner
+
+* Capture images using the device camera.
+* Preview scanned waste items.
+* Foundation for future image-based waste classification.
+
+### 📝 Query History
+
+* Stores previous user queries and responses.
+* View and manage historical interactions.
+* Clear history functionality.
+
+### 🌍 Sustainability Knowledge Base
+
+* Battery Disposal Guide
+* Plastic Recycling Guide
+* E-Waste Management Guide
+* Composting Guide
+* Waste Segregation Guide
+
+---
+
+## 🏗️ System Architecture
+
+Android App
+->
+Retrofit API
+->
+Spring Boot Backend
+->
+Query Service
+->
+Smart Retrieval Engine
+->
+PDF Knowledge Base
+->
+Mistral 7B LLM
+->
+AI Generated Response
+
+---
+
+## ⚙️ Technology Stack
 
 ### Frontend
 
 * Java
 * Android Studio
-* Material Design 3
+* Material Design Components
 * Retrofit
+* OkHttp
 
 ### Backend
 
 * Spring Boot
+* Maven
 * REST APIs
+* Apache PDFBox
+
+### AI & RAG
+
+* Hugging Face Inference API
+* Mistral 7B Instruct
 * Retrieval-Augmented Generation (RAG)
+* Confidence-Based Document Ranking
 
-### Knowledge Base
+### Data Storage
 
-* Sustainability and waste management guides
-* Smart document retrieval engine
-* Context-based response generation
+* SharedPreferences
+* PDF Knowledge Repository
 
-## Architecture
+---
 
-Android App → Spring Boot REST API → Retrieval Engine → Knowledge Base → AI Response Generation → User Recommendation
+## 📂 Project Workflow
 
-## Future Enhancements
+1. User submits a sustainability query.
+2. Query is sent from Android to Spring Boot through Retrofit.
+3. Retrieval Engine identifies the most relevant PDF document.
+4. PDFBox extracts contextual information.
+5. Context and query are sent to Mistral 7B.
+6. AI generates a context-aware recommendation.
+7. Response, source document, and confidence score are returned to the Android application.
 
-* Automatic waste classification using computer vision
-* PDF-based knowledge repository
-* ML-powered waste recognition
-* Personalized sustainability insights
-* Advanced semantic search and retrieval
+---
 
-## Goal
+## 🎯 Example Query
 
-The primary objective of EcoSort AI is to encourage sustainable waste disposal habits by making environmental guidance accessible, intelligent, and easy to use through an interactive mobile application.
+Question:
+How should I dispose of a used lithium battery?
+
+Response:
+Used lithium batteries should never be disposed of in household trash. They should be taken to authorized recycling centers where hazardous materials can be safely processed. Proper recycling helps prevent environmental contamination and enables recovery of valuable materials.
+
+Source:
+Battery_Disposal_Guide.pdf
+
+Confidence:
+70%
+
+---
+
+## 🔮 Future Enhancements
+
+* Real-time waste image classification
+* Location-based recycling center recommendations
+* Voice-enabled sustainability assistant
+* Cloud-based query history
+* Multi-language support
+* Advanced semantic search using vector embeddings
+
+---
+
+## 👨‍💻 Author
+
+**Oswin Ranjan**
+
+B.Tech CSE (AI & ML)
+
+GL Bajaj Institute of Technology & Management
+
+Passionate about Android Development, Artificial Intelligence, Machine Learning, and Sustainable Technology.
+
+---
+
+## 📜 License
+
+This project is developed for educational and internship purposes.
