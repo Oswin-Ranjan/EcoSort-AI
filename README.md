@@ -64,35 +64,7 @@ EcoSort AI is an AI-powered sustainability assistant that helps users make envir
 
 ## 🏗️ System Architecture
 
-Android App
-
-->
-
-Retrofit API
-
-->
-
-Spring Boot Backend
-
-->
-
-Query Service
-
-->
-
-RAG Retrieval Engine
-
-->
-
-PDF Knowledge Base
-
-->
-
-Mistral 7B LLM
-
-->
-
-AI Generated Response
+Android App -> Retrofit API -> Spring Boot Backend -> Query Service -> RAG Retrieval Engine -> PDF Knowledge Base -> Mistral 7B LLM -> AI Generated Response
 
 ---
 
