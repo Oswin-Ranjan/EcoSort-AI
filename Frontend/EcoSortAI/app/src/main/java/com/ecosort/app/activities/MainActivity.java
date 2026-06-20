@@ -179,8 +179,30 @@ public class MainActivity extends AppCompatActivity {
                                 int confidence =
                                         response.body().getConfidence();
 
+                                if (confidence >= 90) {
+
+                                    confidenceBar.setIndicatorColor(
+                                            getColor(R.color.primary_green)
+                                    );
+
+                                } else if (confidence >= 70) {
+
+                                    confidenceBar.setIndicatorColor(
+                                            getColor(android.R.color.holo_orange_dark)
+                                    );
+
+                                } else {
+
+                                    confidenceBar.setIndicatorColor(
+                                            getColor(android.R.color.holo_red_dark)
+                                    );
+                                }
+
                                 confidenceBar.setVisibility(View.VISIBLE);
-                                confidenceBar.setProgress(confidence);
+                                confidenceBar.setProgressCompat(
+                                        confidence,
+                                        true
+                                );
 
                                 tvSource.setText(
                                         "📄 " + source +

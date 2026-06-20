@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_green">
+    android:background="@color/background_green"
+    android:orientation="vertical">
 
     <!-- Header Card -->
 
@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📚 Query History"
+                android:text="📚 Sustainability History"
                 android:textColor="@color/primary_green"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -41,7 +41,7 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Clear History Button -->
+    <!-- Clear Button -->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnClearHistory"
@@ -49,9 +49,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="🗑 Clear History" />
+        android:text="🗑 Clear History"
+        android:textAllCaps="false"
+        app:cornerRadius="16dp" />
 
-    <!-- History Content Card -->
+    <!-- History Card -->
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -71,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:textColor="@color/text_primary"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:lineSpacingExtra="6dp" />
 
         </ScrollView>
 

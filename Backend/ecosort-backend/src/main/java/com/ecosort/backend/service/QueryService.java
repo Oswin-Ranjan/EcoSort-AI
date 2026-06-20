@@ -1,6 +1,7 @@
 package com.ecosort.backend.service;
 
-import com.ecosort.backend.dto.*;
+import com.ecosort.backend.dto.QueryResponse;
+import com.ecosort.backend.dto.RetrievalResult;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,15 +35,34 @@ public class QueryService {
                 fileReaderService.readFile(
                         sourceDocument);
 
-        String answer =
-                graniteService.generateAnswer(
-                        question,
-                        context);
+        int confidence =
+                retrievalResult.getConfidence();
+
+        String answer;
+
+        if (confidence <= 40) {
+
+            answer =
+                    "I could not find a reliable answer in the sustainability knowledge base.\n\n" +
+                            "Try asking about:\n" +
+                            "• Batteries\n" +
+                            "• Plastic Recycling\n" +
+                            "• E-Waste\n" +
+                            "• Composting\n" +
+                            "• Waste Segregation";
+
+        } else {
+
+            answer =
+                    graniteService.generateAnswer(
+                            question,
+                            context);
+        }
 
         return new QueryResponse(
                 answer,
                 sourceDocument,
-                retrievalResult.getConfidence()
+                confidence
         );
     }
 }

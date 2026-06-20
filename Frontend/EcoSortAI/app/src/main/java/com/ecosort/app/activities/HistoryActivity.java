@@ -28,7 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
 
-            getSupportActionBar().setTitle("Query History");
+            getSupportActionBar().setTitle("Sustainability History");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -39,8 +39,8 @@ public class HistoryActivity extends AppCompatActivity {
             HistoryManager.clearHistory(this);
 
             tvHistory.setText(
-                    "📚 No Queries Yet\n\n" +
-                            "Start asking sustainability questions to build your history."
+                    "📚 No Query History Yet\n\n" +
+                            "Ask sustainability questions in EcoSort AI and your interactions will appear here."
             );
         });
     }
@@ -53,8 +53,8 @@ public class HistoryActivity extends AppCompatActivity {
         if (history.isEmpty()) {
 
             tvHistory.setText(
-                    "📚 No Queries Yet\n\n" +
-                            "Start asking sustainability questions to build your history."
+                    "📖\n\nNo Query History Yet\n\n" +
+                            "Ask sustainability questions in EcoSort AI and your interactions will appear here."
             );
 
             return;
@@ -63,12 +63,16 @@ public class HistoryActivity extends AppCompatActivity {
         StringBuilder builder =
                 new StringBuilder();
 
-        for (int i = 0; i < history.size(); i++) {
+        int queryNumber = 1;
 
-            builder.append("━━━━━━━━━━━━━━━━━━━━━━\n\n");
+        for (int i = history.size() - 1; i >= 0; i--) {
 
-            builder.append("Query #")
-                    .append(i + 1)
+            builder.append(
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
+            );
+
+            builder.append("📝 Query #")
+                    .append(queryNumber++)
                     .append("\n\n");
 
             builder.append(history.get(i));

@@ -12,10 +12,13 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <!-- Header Card -->
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="24dp">
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,53 +30,96 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="📷 Waste Scanner"
+                    android:textColor="@color/primary_green"
                     android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary_green"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Capture an image and identify the waste category."
-                    android:textColor="@color/text_secondary"/>
+                    android:textColor="@color/text_secondary" />
 
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-        <ImageView
-            android:id="@+id/imagePreview"
+        <!-- Image Preview -->
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="280dp"
             android:layout_height="280dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="#DADADA"
-            android:scaleType="centerCrop"/>
+            app:cardCornerRadius="24dp"
+            app:cardElevation="6dp">
+
+            <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E8F5E9"
+                android:scaleType="center"
+                android:src="@android:drawable/ic_menu_camera" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Detection Result -->
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="18dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🤖 AI Detection"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvResult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="🟢 Scanner Ready"
+                    android:textColor="@color/primary_green"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Scan Button -->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCapture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="📷 Capture Image"/>
-
-        <TextView
-            android:id="@+id/tvResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Ready to Scan"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:text="📷 Scan Waste Item"
+            android:textAllCaps="false"
+            app:cornerRadius="16dp" />
+
+        <!-- Categories -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Select Waste Category"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -88,35 +134,49 @@
                     android:id="@+id/btnBattery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🔋 Battery"/>
+                    android:layout_marginEnd="8dp"
+                    android:text="🔋 Battery"
+                    android:textAllCaps="false"
+                    app:cornerRadius="18dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnPlastic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="♻️ Plastic"/>
+                    android:layout_marginEnd="8dp"
+                    android:text="♻️ Plastic"
+                    android:textAllCaps="false"
+                    app:cornerRadius="18dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEWaste"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="💻 E-Waste"/>
+                    android:layout_marginEnd="8dp"
+                    android:text="💻 E-Waste"
+                    android:textAllCaps="false"
+                    app:cornerRadius="18dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnOrganic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🍃 Organic"/>
+                    android:text="🍃 Organic"
+                    android:textAllCaps="false"
+                    app:cornerRadius="18dp" />
 
             </LinearLayout>
 
         </HorizontalScrollView>
 
+        <!-- Recommendation -->
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp">
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,17 +187,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Disposal Recommendation"
+                    android:text="🌱 Disposal Recommendation"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvRecommendation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Capture an image and select a category to receive disposal guidance."
-                    android:textSize="16sp"/>
+                    android:lineSpacingExtra="6dp"
+                    android:text="🧠 Capture an image of a waste item or select a category below to receive sustainability guidance."
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
